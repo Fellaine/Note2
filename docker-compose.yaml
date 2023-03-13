@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend/
+    container_name: backend
+    restart: always
+    # ports:
+    #   - "8000:8000"
+    expose:
+      - 8000
+    volumes:
+      - ./backend:/backend
+      - backend_static_volume:/backend/static
+    command: >
+      sh -c "python manage.py migrate && gunicorn backend.wsgi:application --bind '0.0.0.0:8000'"
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+
+  node:
+    build: ./frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/frontend
+    command: npm start
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:13-alpine
+    env_file:
+      - ./.env
+    ports:
+      - "5436:5436"
+    volumes:
+    - my-volume:/var/lib/postgresql/data
+
+  nginx:
+      build: ./nginx
+      container_name: nginx
+      ports:
+        - 8000:80
+      depends_on:
+        - backend
+      volumes:
+        - backend_static_volume:/backend/static
+
+volumes:
+  my-volume:
+  backend_static_volume:
