@@ -55,8 +55,8 @@ services:
         - backend
       volumes:
         - backend_static_volume:/backend/static
-    networks:
-      - notesNetwork
+      networks:
+        - notesNetwork
 
 volumes:
   my-volume:
