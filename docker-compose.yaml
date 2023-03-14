@@ -18,6 +18,8 @@ services:
       - db
     env_file:
       - ./.env
+    networks:
+      - notesNetwork
 
   node:
     build: ./frontend
@@ -30,6 +32,8 @@ services:
     command: npm start
     depends_on:
       - backend
+    networks:
+      - notesNetwork
 
   db:
     image: postgres:13-alpine
@@ -39,6 +43,8 @@ services:
       - "5436:5436"
     volumes:
     - my-volume:/var/lib/postgresql/data
+    networks:
+      - notesNetwork
 
   nginx:
       build: ./nginx
@@ -49,7 +55,13 @@ services:
         - backend
       volumes:
         - backend_static_volume:/backend/static
+    networks:
+      - notesNetwork
 
 volumes:
   my-volume:
   backend_static_volume:
+
+networks:
+  notesNetwork:
+    driver: bridge
