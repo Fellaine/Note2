@@ -2,6 +2,7 @@ import {useSearchParams, useNavigate} from 'react-router-dom'
 import {useEffect} from'react'
 
 const VerifyUser =()=>{
+    const url = process.env.REACT_APP_HOST_IP_ADDRESS
     const [searchParams, setSearchParams] = useSearchParams();
     const userId = searchParams.get("user_id")
     const timestamp = searchParams.get("timestamp")
@@ -15,7 +16,7 @@ const VerifyUser =()=>{
     }
     const verify = async (event) =>{
       const request = new Request(
-        'http://localhost:8000/accounts/verify-registration/',
+        `http://${url}:8000/accounts/verify-registration/`,
         {
           body:JSON.stringify({user_id: userId, timestamp: timestamp, signature: signature}),
           headers:{

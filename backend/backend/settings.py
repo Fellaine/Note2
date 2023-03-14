@@ -183,10 +183,10 @@ SPECTACULAR_SETTINGS = {
 
 REST_REGISTRATION = {
     # 'REGISTER_VERIFICATION_ENABLED': False,
-    'REGISTER_VERIFICATION_URL': 'http://localhost:3000/verify-user/',
+    'REGISTER_VERIFICATION_URL': f'{os.environ.get("FRONTEND_URL")}/verify-user/',
     'VERIFICATION_FROM_EMAIL': EMAIL_HOST_USER,
     'RESET_PASSWORD_VERIFICATION_ENABLED': True,
-    'RESET_PASSWORD_VERIFICATION_URL': 'http://localhost:3000/reset-password/',
+    'RESET_PASSWORD_VERIFICATION_URL': f'{os.environ.get("FRONTEND_URL")}/reset-password/',
     'SEND_RESET_PASSWORD_LINK_SERIALIZER_USE_EMAIL': True,
     'REGISTER_EMAIL_VERIFICATION_ENABLED': False,
     'USER_LOGIN_FIELDS': ['email']
@@ -198,5 +198,6 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    os.environ.get('ALLOWED_CORS')
 ]

@@ -32,6 +32,8 @@ services:
     command: npm start
     depends_on:
       - backend
+    env_file:
+      - ./.env
     networks:
       - notesNetwork
 

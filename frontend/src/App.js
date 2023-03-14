@@ -8,7 +8,7 @@ import jwt_decode from "jwt-decode";
 
 
 function App() {
-  
+  const backend_url = process.env.REACT_APP_HOST_IP_ADDRESS
   let navigate = useNavigate(); 
     const routeChange = () =>{ 
       let path = `/login`; 
@@ -36,7 +36,7 @@ function App() {
     event.preventDefault();
 
     const request = new Request(
-      'http://localhost:8000/api/notes/',
+      `http://${backend_url}:8000/api/notes/`,
       {
         body:JSON.stringify({title,content}),
         headers:{
@@ -61,7 +61,7 @@ function App() {
     // console.log(id)
     // console.log(id)
     event.preventDefault();
-    const url = `http://localhost:8000/api/notes/${id}/`
+    const url = `http://${backend_url}:8000/api/notes/${id}/`
     // console.log(url)
     // console.log(url)
 
@@ -89,7 +89,7 @@ function App() {
   }
   const getNotes = async () =>{
     const request = new Request(
-      'http://localhost:8000/api/notes/',
+      `http://${backend_url}:8000/api/notes/`,
       {
         headers:{
           "Authorization": `Bearer ${token}`
@@ -123,7 +123,7 @@ function App() {
     },[]
   )
   const deleteNote= async (noteId)=>{
-    const response = await fetch(`http://localhost:8000/api/notes/${noteId}/`,
+    const response = await fetch(`http://${backend_url}:8000/api/notes/${noteId}/`,
     {
       headers:{
         "Authorization": `Bearer ${token}`

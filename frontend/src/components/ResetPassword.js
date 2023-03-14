@@ -2,6 +2,7 @@ import {useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const ResetPassword = ()=>{
+    const url = process.env.REACT_APP_HOST_IP_ADDRESS
     const [searchParams, setSearchParams] = useSearchParams();
     const userId = searchParams.get("user_id")
     const timestamp = searchParams.get("timestamp")
@@ -15,7 +16,7 @@ const ResetPassword = ()=>{
     const resetPassword = async (event) =>{
       event.preventDefault();
       const request = new Request(
-        'http://localhost:8000/accounts/reset-password/',
+        `http://${url}:8000/accounts/reset-password/`,
         {
           body:JSON.stringify({password: password, user_id: userId, timestamp: timestamp, signature: signature}),
           headers:{

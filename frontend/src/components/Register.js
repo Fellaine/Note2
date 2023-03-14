@@ -2,6 +2,7 @@ import {useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Register = ()=>{
+    const url = process.env.REACT_APP_HOST_IP_ADDRESS
     const [login, setLogin] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -14,7 +15,7 @@ const Register = ()=>{
     const register = async (event) =>{
       event.preventDefault();
       const request = new Request(
-        'http://localhost:8000/accounts/register/',
+        `http://${url}:8000/accounts/register/`,
         {
           body:JSON.stringify({username: login, email: email, password: password, password_confirm: confirmPassword}),
           headers:{

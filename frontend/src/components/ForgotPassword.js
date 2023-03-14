@@ -2,6 +2,7 @@ import {useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ForgotPassword = ()=>{
+    const url = process.env.REACT_APP_HOST_IP_ADDRESS
     const [email, setEmail] = useState('')
     let navigate = useNavigate(); 
     // const routeChange = () =>{ 
@@ -15,7 +16,7 @@ const ForgotPassword = ()=>{
     const forgotPassword = async (event) =>{
       event.preventDefault();
       const request = new Request(
-        'http://localhost:8000/accounts/send-reset-password-link/',
+        `http://${url}:8000/accounts/send-reset-password-link/`,
         {
           body:JSON.stringify({email: email}),
           headers:{

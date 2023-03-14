@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Login = ()=>{
-
+    const url = process.env.REACT_APP_HOST_IP_ADDRESS
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     let navigate = useNavigate(); 
@@ -22,7 +22,7 @@ const Login = ()=>{
     const getToken = async (event) =>{
       event.preventDefault();
       const request = new Request(
-        'http://localhost:8000/accounts/obtain-token/',
+        `http://${url}:8000/accounts/obtain-token/`,
         {
           body:JSON.stringify({username: login,password: password}),
           headers:{
