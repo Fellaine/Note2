@@ -16,7 +16,7 @@ const VerifyUser =()=>{
     }
     const verify = async (event) =>{
       const request = new Request(
-        `http://${url}:8000/accounts/verify-registration/`,
+        `http://${url}/accounts/verify-registration/`,
         {
           body:JSON.stringify({user_id: userId, timestamp: timestamp, signature: signature}),
           headers:{

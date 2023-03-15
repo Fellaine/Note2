@@ -16,7 +16,7 @@ const ForgotPassword = ()=>{
     const forgotPassword = async (event) =>{
       event.preventDefault();
       const request = new Request(
-        `http://${url}:8000/accounts/send-reset-password-link/`,
+        `http://${url}/accounts/send-reset-password-link/`,
         {
           body:JSON.stringify({email: email}),
           headers:{

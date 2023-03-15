@@ -22,7 +22,7 @@ const Login = ()=>{
     const getToken = async (event) =>{
       event.preventDefault();
       const request = new Request(
-        `http://${url}:8000/accounts/obtain-token/`,
+        `http://${url}/accounts/obtain-token/`,
         {
           body:JSON.stringify({username: login,password: password}),
           headers:{

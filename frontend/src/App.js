@@ -61,7 +61,7 @@ function App() {
     // console.log(id)
     // console.log(id)
     event.preventDefault();
-    const url = `http://${backend_url}:8000/api/notes/${id}/`
+    const url = `http://${backend_url}/api/notes/${id}/`
     // console.log(url)
     // console.log(url)
 
