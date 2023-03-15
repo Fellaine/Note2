@@ -16,7 +16,7 @@ const ResetPassword = ()=>{
     const resetPassword = async (event) =>{
       event.preventDefault();
       const request = new Request(
-        `http://${url}/accounts/reset-password/`,
+        `${url}/accounts/reset-password/`,
         {
           body:JSON.stringify({password: password, user_id: userId, timestamp: timestamp, signature: signature}),
           headers:{

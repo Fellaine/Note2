@@ -199,5 +199,6 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://localhost:3000",
     os.environ.get('ALLOWED_CORS')
 ]

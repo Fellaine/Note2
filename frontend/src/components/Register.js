@@ -15,7 +15,7 @@ const Register = ()=>{
     const register = async (event) =>{
       event.preventDefault();
       const request = new Request(
-        `http://${url}/accounts/register/`,
+        `${url}/accounts/register/`,
         {
           body:JSON.stringify({username: login, email: email, password: password, password_confirm: confirmPassword}),
           headers:{
