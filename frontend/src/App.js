@@ -36,7 +36,7 @@ function App() {
     event.preventDefault();
 
     const request = new Request(
-      `http://${backend_url}:8000/api/notes/`,
+      `http://${backend_url}/api/notes/`,
       {
         body:JSON.stringify({title,content}),
         headers:{
@@ -89,7 +89,7 @@ function App() {
   }
   const getNotes = async () =>{
     const request = new Request(
-      `http://${backend_url}:8000/api/notes/`,
+      `http://${backend_url}/api/notes/`,
       {
         headers:{
           "Authorization": `Bearer ${token}`
@@ -123,7 +123,7 @@ function App() {
     },[]
   )
   const deleteNote= async (noteId)=>{
-    const response = await fetch(`http://${backend_url}:8000/api/notes/${noteId}/`,
+    const response = await fetch(`http://${backend_url}/api/notes/${noteId}/`,
     {
       headers:{
         "Authorization": `Bearer ${token}`
