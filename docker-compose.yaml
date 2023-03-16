@@ -24,12 +24,13 @@ services:
   node:
     build: ./frontend
     container_name: frontend
-    restart: always
+    # restart: always
     ports:
       - 3000:3000
+    command: npm run build
     volumes:
       - ./frontend:/frontend
-    command: npm start
+      - frontend_static_volume:/frontend/build
     depends_on:
       - backend
     env_file:
@@ -52,17 +53,21 @@ services:
       build: ./nginx
       container_name: nginx
       ports:
-        - 8000:80
+        - 8001:80
+        - 3001:3001
       depends_on:
         - backend
+        - node
       volumes:
         - backend_static_volume:/backend/static
+        - frontend_static_volume:/frontend/build
       networks:
         - notesNetwork
 
 volumes:
   my-volume:
   backend_static_volume:
+  frontend_static_volume:
 
 networks:
   notesNetwork:
