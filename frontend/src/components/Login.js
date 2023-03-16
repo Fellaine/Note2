@@ -1,5 +1,6 @@
 import {useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {NotificationManager} from 'react-notifications';
 
 
 const Login = ()=>{
@@ -35,10 +36,15 @@ const Login = ()=>{
       const data = await response.json()
       if (response.ok){
         localStorage.setItem('token',data.access) // for drf jwt
+        NotificationManager.success('Logged in successfully');
         // localStorage.setItem('token',data.token) // for default drf tokens
         redirectToHome()
       }
-      else console.log("Error while making request")
+      else {
+        NotificationManager.error(Object.values(data))
+        // Object.keys(data.detail).length !== 0?NotificationManager.error(data.detail):
+        // NotificationManager.error("Unknown error")
+      }
       // response.ok?console.log(data.token):console.log("Error while making request")
     }
     return(

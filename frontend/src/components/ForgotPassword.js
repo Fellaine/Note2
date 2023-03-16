@@ -1,5 +1,7 @@
 import {useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {NotificationManager} from 'react-notifications';
+
 
 const ForgotPassword = ()=>{
     const url = process.env.REACT_APP_HOST_IP_ADDRESS
@@ -29,9 +31,12 @@ const ForgotPassword = ()=>{
       const data = await response.json()
       if (response.ok){
         // routeChange()
-        console.log("Follow instructions from the email")
+        NotificationManager.success('Follow instructions from the email', 'Success');
+        // console.log("Follow instructions from the email")
       }
-      else console.log("Error while making request")
+      else{
+        NotificationManager.error(Object.values(data))
+      }
       // response.ok?console.log(data.token):console.log("Error while making request")
     }
     return(

@@ -8,6 +8,8 @@ import { Register } from './components/Register';
 import { VerifyUser } from './components/VerifyUser';
 import { ForgotPassword } from './components/ForgotPassword';
 import { ResetPassword } from './components/ResetPassword';
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer} from 'react-notifications';
 // import Sample from './components/Sample';
 // import reportWebVitals from './reportWebVitals';
 
@@ -24,6 +26,7 @@ root.render(
       <Route path='reset-password' element = {<ResetPassword/>}/>
     </Routes>
     </BrowserRouter>
+    <NotificationContainer/>
   </React.StrictMode>
 );
 

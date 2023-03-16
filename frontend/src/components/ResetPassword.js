@@ -1,5 +1,7 @@
 import {useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import {NotificationManager} from 'react-notifications';
+
 
 const ResetPassword = ()=>{
     const url = process.env.REACT_APP_HOST_IP_ADDRESS
@@ -28,9 +30,12 @@ const ResetPassword = ()=>{
       const response = await fetch(request)
       const data = await response.json()
       if (response.ok){
+        NotificationManager.success('Password reset successfully');
         routeChange()
       }
-      else console.log("Error while making request")
+      else{
+        NotificationManager.error(Object.values(data))
+      }
       // response.ok?console.log(data.token):console.log("Error while making request")
     }
     return(

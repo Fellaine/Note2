@@ -1,5 +1,7 @@
 import {useSearchParams, useNavigate} from 'react-router-dom'
 import {useEffect} from'react'
+import {NotificationManager} from 'react-notifications';
+
 
 const VerifyUser =()=>{
     const url = process.env.REACT_APP_HOST_IP_ADDRESS
@@ -28,6 +30,16 @@ const VerifyUser =()=>{
       const response = await fetch(request)
       const data = await response.json()
       response.ok?routeChange():message="Error while verifying registration"
+      if (response.ok){
+        NotificationManager.success('Verified registration successfully', 'Success');
+        routeChange()
+      }
+      else{
+        NotificationManager.error(Object.values(data))
+        routeChange()
+        // Object.keys(data.non_field_errors).length !== 0&&NotificationManager.error(data.non_field_errors)
+        // Object.keys(data.password).length !== 0&&NotificationManager.error(data.password)
+      } 
       // response.ok?console.log(data):console.log("Error while making request")
       // !response.ok && console.log("Error while making request")
       // console.log(title)

@@ -1,5 +1,7 @@
 import {useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {NotificationManager} from 'react-notifications';
+
 
 const Register = ()=>{
     const url = process.env.REACT_APP_HOST_IP_ADDRESS
@@ -27,47 +29,52 @@ const Register = ()=>{
       const response = await fetch(request)
       const data = await response.json()
       if (response.ok){
+        NotificationManager.success('Follow instructions from the email', 'Success');
         routeChange()
       }
-      else console.log("Error while making request")
+      else{
+        NotificationManager.error(Object.values(data))
+        // Object.keys(data.non_field_errors).length !== 0&&NotificationManager.error(data.non_field_errors)
+        // Object.keys(data.password).length !== 0&&NotificationManager.error(data.password)
+      } 
       // response.ok?console.log(data.token):console.log("Error while making request")
     }
     return(
-        <div className="form">
-          <div className="form-header">
-            <div>
-              <p className="form-title">Register</p>
-            </div>
+      <div className="form">
+        <div className="form-header">
+          <div>
+            <p className="form-title">Register</p>
           </div>
-          <form>
-            <div className="form-group">
-              <label htmlFor="login" className="form-label">Login</label>
-              <input type="text" name="login" className="form-input" value={login}
-                onChange={(e)=>setLogin(e.target.value)} required/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="email" className="form-label">Email</label>
-              <input type="email" name="email" className="form-input" value={email}
-                onChange={(e)=>setEmail(e.target.value)} required/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="password" className="form-label">Password</label>
-              <input type="password" name="password" className="form-input" value = {password}
-                onChange={(e)=>setPassword(e.target.value)} required/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="confirm-password" className="form-label">Confirm password</label>
-              <input type="password" name="confirm-password" className="form-input" value = {confirmPassword}
-                onChange={(e)=>setConfirmPassword(e.target.value)} required/>
-            </div>
-            <div className="form-group">
-              <button type="submit" disabled={!password||!login||!confirmPassword} className="form-btn" onClick={register}>Register</button>
-            </div>
-            <div className="redirect">
-              <p>Already have an account? <span className='redirect-span' onClick={routeChange}>Login</span></p>
-            </div>
-          </form>
         </div>
+        <form>
+          <div className="form-group">
+            <label htmlFor="login" className="form-label">Login</label>
+            <input type="text" name="login" className="form-input" value={login}
+              onChange={(e)=>setLogin(e.target.value)} required/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">Email</label>
+            <input type="email" name="email" className="form-input" value={email}
+              onChange={(e)=>setEmail(e.target.value)} required/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input type="password" name="password" className="form-input" value = {password}
+              onChange={(e)=>setPassword(e.target.value)} required/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="confirm-password" className="form-label">Confirm password</label>
+            <input type="password" name="confirm-password" className="form-input" value = {confirmPassword}
+              onChange={(e)=>setConfirmPassword(e.target.value)} required/>
+          </div>
+          <div className="form-group">
+            <button type="submit" disabled={!password||!login||!confirmPassword} className="form-btn" onClick={register}>Register</button>
+          </div>
+          <div className="redirect">
+            <p>Already have an account? <span className='redirect-span' onClick={routeChange}>Login</span></p>
+          </div>
+        </form>
+      </div>
     )
 }
 export {Register}

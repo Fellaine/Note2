@@ -5,6 +5,7 @@ import { Form } from './components/Form';
 import { useNavigate } from 'react-router-dom';
 // import jsonwebtoken
 import jwt_decode from "jwt-decode";
+import {NotificationManager} from 'react-notifications';
 
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
     const response = await fetch(request)
     const data = await response.json()
     // response.ok?console.log(data):console.log("Error while making request")
-    !response.ok && console.log("Error while making request")
+    !response.ok && NotificationManager.error(Object.values(data))
     // console.log(title)
     // console.log(content)
     setFormVisible(!formVisible)
@@ -79,7 +80,7 @@ function App() {
     const response = await fetch(request)
     const data = await response.json()
     // response.ok?console.log(data):console.log("Error while making request")
-    !response.ok && console.log("Error while making request")
+    !response.ok && NotificationManager.error(Object.values(data))
     // console.log(title)
     // console.log(content)
     setFormVisible(!formVisible)
@@ -99,7 +100,7 @@ function App() {
     )
     const response = await fetch(request)
     const data = await response.json()
-    response.ok?setNotes(data):console.log("Error while making request")
+    response.ok?setNotes(data):NotificationManager.error(Object.values(data))
   }
   useEffect(()=>{
 
@@ -130,8 +131,9 @@ function App() {
       },
       method:'DELETE'
     })
+    const data = await response.json()
     // response.ok?console.log(response.status):console.log("Error while making request")
-    !response.ok && console.log("Error while making request")
+    !response.ok && NotificationManager.error(Object.values(data))
     getNotes()
 
 
@@ -210,6 +212,7 @@ function App() {
         content={content} setContent={setContent} updateNoteCheck={updateNoteCheck}
         formSubmitAction={updateNoteCheck[0]?(event)=>updateNote(event,updateNoteCheck[1]):createNote}/>
       </div>
+      
     </div>
   );
 }
