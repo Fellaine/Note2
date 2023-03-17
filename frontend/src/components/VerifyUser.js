@@ -31,7 +31,7 @@ const VerifyUser =()=>{
       const data = await response.json()
       response.ok?routeChange():message="Error while verifying registration"
       if (response.ok){
-        NotificationManager.success('Verified registration successfully', 'Success');
+        NotificationManager.success('Email verified successfully');
         routeChange()
       }
       else{
