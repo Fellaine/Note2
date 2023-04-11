@@ -131,9 +131,9 @@ function App() {
       },
       method:'DELETE'
     })
-    const data = await response.json()
+    //const data = await response.json()
     // response.ok?console.log(response.status):console.log("Error while making request")
-    !response.ok && NotificationManager.error(Object.values(data))
+    !response.ok && NotificationManager.error("Error while deleting note")
     getNotes()
 
 
