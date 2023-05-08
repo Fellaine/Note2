@@ -28,7 +28,7 @@ jobs:
       db:
         image: postgres
         ports:
-          - 5436:5436
+          - 5432:5432
 
     defaults:
       run:
