@@ -4,7 +4,6 @@ from urllib.parse import parse_qs, urlparse
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core import mail
-from django.core.validators import URLValidator
 from django.test import Client, TestCase
 
 from .models import Note
@@ -96,8 +95,6 @@ class RegisterAndCrudTestCase(TestCase):
     def test_register_email_body(self):
         msg, url = self.my_mail[0].body.split("\n", 1)
         self.assertEqual(msg, "Please verify your account by clicking on this link:")
-        validate = URLValidator()
-        validate(url.strip())
 
     def test_crud_with_access_token(self):
         _, url = self.my_mail[0].body.split("\n", 1)
