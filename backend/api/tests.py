@@ -128,9 +128,9 @@ class RegisterAndCrudTestCase(TestCase):
             "/api/notes/", **{"HTTP_AUTHORIZATION": "Bearer " + access_token}
         )
         """
-        Method currently recommended by docs will not work here since it was only added in 4.2:
+        Method recommended by docs will not work here since it was only added in 4.2:
         headers={"Authorization": f"Bearer {access_token}"}
-        and while doing it using **extra one should change Authorization to HTTP_AUTHORIZATION
+        and while doing it using **extra one should change Authorization to HTTP_AUTHORIZATION  # noqa: E501
         as explained here: https://stackoverflow.com/questions/54674844/
         """
         self.assertEqual(get_notes_response.status_code, 200)
