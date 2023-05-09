@@ -1,3 +1,5 @@
 # Notes
 
-Project made while learning django, DRF, react, postgres and docker.
+Website to manage notes using django, DRF, React, PostgreSQL and Docker.
+
+Watch live on https://fellaine.site/
