@@ -111,7 +111,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa: E501
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
@@ -187,7 +187,7 @@ REST_REGISTRATION = {
     "REGISTER_VERIFICATION_URL": f'{os.environ.get("FRONTEND_URL")}/verify-user/',
     "VERIFICATION_FROM_EMAIL": EMAIL_HOST_USER,
     "RESET_PASSWORD_VERIFICATION_ENABLED": True,
-    "RESET_PASSWORD_VERIFICATION_URL": f'{os.environ.get("FRONTEND_URL")}/reset-password/',
+    "RESET_PASSWORD_VERIFICATION_URL": f'{os.environ.get("FRONTEND_URL")}/reset-password/',  # noqa: E501
     "SEND_RESET_PASSWORD_LINK_SERIALIZER_USE_EMAIL": True,
     "REGISTER_EMAIL_VERIFICATION_ENABLED": False,
     "USER_LOGIN_FIELDS": ["email"],
