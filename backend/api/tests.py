@@ -2,11 +2,13 @@ import datetime
 from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core import mail
 from django.test import Client, TestCase
 
 from .models import Note
+
+User = get_user_model()
 
 
 class SettingsTestCase(TestCase):
