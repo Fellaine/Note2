@@ -6,3 +6,5 @@ myvenv
 .env
 frontend/build
 backend/api/migrations/__pycache__
+backend/celery_email/__pycache__
+backend/celery_email/migrations/__pycache__
