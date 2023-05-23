@@ -13,9 +13,12 @@ services:
       - ./backend:/backend
       - backend_static_volume:/backend/static
     command: >
-      sh -c "python manage.py migrate && gunicorn backend.wsgi:application --bind '0.0.0.0:8000'"
+      sh -c "python manage.py makemigrations && python manage.py migrate && 
+      python -m celery -A celery_email.tasks worker --loglevel=INFO --detach && 
+      gunicorn backend.wsgi:application --bind '0.0.0.0:8000'"
     depends_on:
       - db
+      - rabbit
     env_file:
       - ./.env
     networks:
@@ -63,11 +66,23 @@ services:
         - frontend_static_volume:/frontend/build
       networks:
         - notesNetwork
+  
+  rabbit:
+    image: rabbitmq
+    restart: always
+    volumes: 
+      - rabbit:/data
+    ports:
+      - "5672:5672"
+    networks:
+        - notesNetwork
+
 
 volumes:
   my-volume:
   backend_static_volume:
   frontend_static_volume:
+  rabbit:
 
 networks:
   notesNetwork:
