@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "api",
+    "celery_email",
     "rest_framework",
     "drf_spectacular",
     "rest_framework.authtoken",
@@ -147,7 +148,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-EMAIL_BACKEND = os.environ.get("EMAIL_BACKEND")
+# EMAIL_BACKEND = os.environ.get("EMAIL_BACKEND")
+EMAIL_BACKEND = "celery_email.email_backend.CeleryEmailBackend"
 EMAIL_HOST = os.environ.get("EMAIL_HOST")
 EMAIL_PORT = os.environ.get("EMAIL_PORT")
 EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS")
