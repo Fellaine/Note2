@@ -25,6 +25,7 @@ jobs:
       DEFAULT_FROM_EMAIL: ${{ secrets.DEFAULT_FROM_EMAIL }}
       ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
       ALLOWED_CORS: ${{ secrets.ALLOWED_CORS }}
+      CSRF_TRUSTED_ORIGINS: ${{ secrets.CSRF_TRUSTED_ORIGINS }}
     strategy:
       max-parallel: 4
       matrix:
