@@ -206,3 +206,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://localhost:3000",
     os.environ.get("ALLOWED_CORS"),
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    os.environ.get("CSRF_TRUSTED_ORIGINS"),
+]
