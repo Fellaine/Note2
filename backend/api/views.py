@@ -21,7 +21,7 @@ class NotesViewset(viewsets.ModelViewSet):
     queryset = Note.objects.all()
 
     def get_queryset(self):
-        return Note.objects.filter(user=self.request.user)
+        return Note.objects.filter(user=self.request.user).order_by("-last_edited")
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
