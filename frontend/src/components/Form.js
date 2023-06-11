@@ -18,7 +18,7 @@ const Form = ({formVisible, setFormVisible, title, setTitle, content, setContent
             </div>
             <div className="form-group">
               <label htmlFor="content" className="form-label">Content</label>
-              <textarea type="text" name="content" className="form-input" rows={4} value = {content}
+              <textarea type="text" name="content" className="form-input" rows={15} value = {content}
                 onChange={(e)=>setContent(e.target.value)}/>
             </div>
             <div className="form-group">
